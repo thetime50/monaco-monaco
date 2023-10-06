@@ -1,0 +1,12 @@
+{
+  "name": "monaco-monaco",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:thetime50/monaco-monaco.git",
+  "author": "thetime50",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "monaco-vue"
+  ]
+}
