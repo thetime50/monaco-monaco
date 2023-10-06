@@ -4,9 +4,16 @@
     <div class="block">
       <p class="p1">你好</p>
       <p class="p2">monaco-vue</p>
+      <a-input  v-model:value="userName" />
+      <p>{{ userName }}</p>
     </div>
   </div>
 </template>
+
+<script setup lang="ts">
+import { ref } from 'vue';
+const userName = ref<string>("")
+</script>
 
 <style scoped lang="scss">
 @media (min-width: 1024px) {
