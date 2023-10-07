@@ -1,11 +1,11 @@
 <template>
   <div class="about">
-    <h1 class="text-2xl font-bold">This is an about page</h1>
+    <h1>This is an about page</h1>
     <div class="block">
       <p class="p1">你好</p>
       <p class="p2">monaco-vue</p>
       <a-input  v-model:value="userName" />
-      <p>{{ userName }}</p>
+      <p class="text-2xl font-bold">{{ userName }}</p>
     </div>
   </div>
 </template>
