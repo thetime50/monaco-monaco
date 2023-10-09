@@ -1,7 +1,10 @@
 <template>
   <div class="editer-view">
     <MonacoEditor
-      :code="code"
+      v-model:value="code"
+      :key="kk"
+      language="typescript"
+      theme="vs-dark"
       :editorOptions="options"
       @mounted="onEditerMounted"
       @codeChange="onCodeChange">
@@ -10,7 +13,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref,readonly,reactive } from 'vue';
+import { ref,readonly,reactive,nextTick,onMounted } from 'vue';
 
 import * as monaco from "monaco-editor"
 // import 'monaco-editor/esm/vs/basic-languages/javascript/javascript.contribution'; // 语法高亮?
@@ -24,7 +27,7 @@ import tsWorker from "monaco-editor/esm/vs/language/typescript/ts.worker?worker"
 
 import MonacoEditor,{ loader }  from '@guolao/vue-monaco-editor'
 
-self.MonacoEnvironment = {
+window.MonacoEnvironment = {
   getWorker(_, label) {
     if (label === "json") {
       return new jsonWorker()
@@ -44,11 +47,15 @@ self.MonacoEnvironment = {
 
 loader.config({ monaco })
 
-const code = ref<string>("")
+const kk = ref<number>(1)
+onMounted(async ()=>{
+  await nextTick()
+  kk.value+=1
+})
+
+const code = ref<string>('import aaa from "1234"\nvar a =3;\nconsole.log("eee")')
 const options = readonly({
-  language:"typescript",
   selectOnLineNumbers: false,
-  theme:"vs-dark"
  })
 const editor = ref<any>()
 
