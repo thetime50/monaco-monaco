@@ -28,6 +28,13 @@ import tsWorker from "monaco-editor/esm/vs/language/typescript/ts.worker?worker"
 import MonacoEditor,{ loader }  from '@guolao/vue-monaco-editor'
 
 window.MonacoEnvironment = {
+  // getWorkerUrl: function (moduleId, label) {
+  //   if (label === 'javascript') {
+  //     return './monaco.ts.worker.js';
+  //   }
+
+  //   return './monaco.editor.worker.js';
+  // },
   getWorker(_, label) {
     if (label === "json") {
       return new jsonWorker()
