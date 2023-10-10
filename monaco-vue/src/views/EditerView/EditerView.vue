@@ -7,7 +7,7 @@
       theme="vs-dark"
       :editorOptions="options"
       @mounted="onEditerMounted"
-      @codeChange="onCodeChange">
+      @change="onCodeChange">
     </MonacoEditor>
   </div>
 </template>
@@ -70,8 +70,9 @@ const editor = ref<any>()
 function onEditerMounted(editor){
   editor.value = editor
 }
-function onCodeChange(editor){
-   console.log(this.editor.getValue());
+function onCodeChange(editor:string){
+  console.log("code", code.value)
+  // console.log(this.editor.getValue());
 }
 
 </script>
