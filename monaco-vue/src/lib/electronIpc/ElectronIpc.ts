@@ -1,6 +1,6 @@
 declare global {
   interface Window {
-    ipcRenderer: {
+    electronAPI: {
       send: (channel: string, ...args: any[])=>void
     };
   }
@@ -8,10 +8,11 @@ declare global {
 
 export class ElectronIpc{
   static send = (channel: string, ...args: any[]) => {
-    if (!window.ipcRenderer || !window.ipcRenderer.send){
-      throw new Error("找不到 window.ipcRenderer.send")
+    if (!window.electronAPI || !window.electronAPI.send){
+      console.log("window.ipcRenderer", window.electronAPI)
+      throw new Error("找不到 window.electronAPI.send")
     }
-    window.ipcRenderer.send(channel, ...args)
+    window.electronAPI.send(channel, ...args)
   }
 
 }

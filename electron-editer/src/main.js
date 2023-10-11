@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow,ipcMain } = require('electron')
 const path = require('path')
 
 const createWindow = () => {
@@ -26,7 +26,7 @@ app.whenReady().then(() => {
     const senderWindowId = event.sender.id;
 
     console.log(`Received message from window with ID: ${senderWindowId}`);
-    console.log(`Message content: ${message}`);
+    console.log(`Message content: ${JSON.stringify( message)}`);
   });
 
 })

@@ -7,7 +7,7 @@
           {{menu.test}}
         </li>
       </ul>
-      <div class="center flex-auto" @dragstart="onDragstart" @dragend="onDragend">
+      <div class="center flex-auto" @mousedown="onDragstart" @mouseup="onDragend">
         <!--  -->
       </div>
       <div class="right flex-0 flex-layout flex-row">
@@ -57,6 +57,9 @@ function closeClick(){
   width: 100%;
   height: 100%;
 }
+header{
+  user-select: none; 
+}
 .logo{
   padding:2px;
   margin-right: 5px
@@ -67,6 +70,8 @@ function closeClick(){
 
 .menu-item{
   padding: 2px;
+  cursor: pointer;
+  margin: 0 2px;
 }
 
 .right-btn{
