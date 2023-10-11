@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "A minimal Electron application written with Typescript",
   "scripts": {
-    "build": "tsc",
+    "build": "webpack --config webpack.config.js && webpack --config webpack.common-lib.config.js",
     "watch": "tsc -w",
     "lint": "eslint -c .eslintrc --ext .ts ./src",
     "start": "npm run build && electron ./dist/main.js"
@@ -26,7 +26,10 @@
     "eslint": "^7.32.0",
     "install": "^0.13.0",
     "npm": "^10.2.0",
-    "typescript": "^4.8.3"
+    "ts-loader": "^9.5.0",
+    "typescript": "^4.8.3",
+    "webpack": "^5.88.2",
+    "webpack-cli": "^5.1.4"
   },
   "dependencies": {
     "common-lib": "link:./common-lib"
