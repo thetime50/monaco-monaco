@@ -1,5 +1,5 @@
-const { app, BrowserWindow,ipcMain } = require('electron')
-const path = require('path')
+import { app, BrowserWindow,ipcMain } from 'electron'
+import path from 'path'
 
 const createWindow = () => {
   const win = new BrowserWindow({
