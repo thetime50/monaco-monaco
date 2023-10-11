@@ -1,10 +1,7 @@
 import { ElectronIpc } from "./ElectronIpc"
-import {IPC_CMD} from "./cmdDef"
+import { IPC_CMD } from "common-lib/src/ElectronIpc"
+import type { IpcCmdMsg } from "common-lib/src/ElectronIpc"
 
-interface IpcCmdMsg{
-  action: IPC_CMD,
-  params?: any,
-}
 
 export class IpcCmd {
   static sendCmd = (msg: IpcCmdMsg) => {

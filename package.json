@@ -6,8 +6,13 @@
   "author": "thetime50",
   "license": "MIT",
   "private": true,
+  "scripts": {
+    "start": "yarn workspaces monaco-vue run dev && yarn workspaces electron-editer run start # 还有问题",
+    "build": ""
+  },
   "workspaces": [
     "monaco-vue",
-    "electron-editer"
+    "electron-editer",
+    "common-lib"
   ]
 }
