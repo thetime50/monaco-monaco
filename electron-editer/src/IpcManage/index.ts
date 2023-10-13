@@ -23,7 +23,7 @@ class IpcManage{
   lisents: Record<number, IpcLisent> = {}
   constructor(channel:string){
     this.channel = channel
-    ipcMain.on(channel,this.onIpcMessage)
+    ipcMain.on(channel,this.onIpcMessage.bind(this))
   }
   addLisent(ipcLisent: IpcLisent){
     this.lisents[ipcLisent.winId] = ipcLisent

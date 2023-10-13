@@ -6,6 +6,7 @@ module.exports = {
     main:'./src/main.ts',  // 你的项目入口文件
     preload:'./src/preload/index.ts'
   },
+  devtool:'source-map',
   target: 'node',
   mode:"development",
   output: {

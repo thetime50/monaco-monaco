@@ -11,7 +11,7 @@ class EditerWindow{
   create(){
     console.log("__dirname", __dirname)
     this.win = new BrowserWindow({
-      width: 800,
+      width: 1200,
       height: 600,
       webPreferences: {
         preload: path.join(__dirname, 'preload/index.js')
@@ -27,6 +27,16 @@ class EditerWindow{
   // win.whenReady().then(()=>{
 
   // })
+    this.win.webContents.on("before-input-event",(event,input)=>{
+      console.log(input.key)
+      if(input.key == "F12"){
+        // if (this.win.webContents.isDevToolsOpened()) {
+        //   this.win.webContents.closeDevTools()
+        // }else{
+        //   this.win.webContents.openDevTools()
+        // }
+      }
+    })
   }
 
 
@@ -61,13 +71,17 @@ class EditerWindow{
     // 
   }
   onIPC_CMD_HEAD_MAXIMIZE(){
-    // 
+    if (this.win.isMaximized()){
+      this.win.unmaximize()
+    }else{
+      this.win.maximize()
+    }
   }
   onIPC_CMD_HEAD_MINIMIZE(){
-    // 
+    this.win.minimize()
   }
   onIPC_CMD_HEAD_CLOSE(){
-    // 
+    this.win.close()
   }
 }
 
