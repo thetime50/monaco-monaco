@@ -2,6 +2,8 @@ import { app, ipcMain } from 'electron'
 
 import EditerWindow from "./EditerWindow"
 import IpcManage from "./IpcManage"
+import { initialize as remoteInitialize } from "@electron/remote/main"
+remoteInitialize()
 
 app.whenReady().then(() => {
   var ewin = new EditerWindow()

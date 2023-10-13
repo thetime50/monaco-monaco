@@ -27,16 +27,6 @@ class EditerWindow{
   // win.whenReady().then(()=>{
 
   // })
-    this.win.webContents.on("before-input-event",(event,input)=>{
-      console.log(input.key)
-      if(input.key == "F12"){
-        // if (this.win.webContents.isDevToolsOpened()) {
-        //   this.win.webContents.closeDevTools()
-        // }else{
-        //   this.win.webContents.openDevTools()
-        // }
-      }
-    })
   }
 
 

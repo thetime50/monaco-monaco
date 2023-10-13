@@ -12,6 +12,7 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
   },
   "dependencies": {
+    "@electron/remote": "^2.0.12",
     "@guolao/vue-monaco-editor": "^1.3.0",
     "ant-design-vue": "4.x",
     "common-lib": "link:./common-lib",
