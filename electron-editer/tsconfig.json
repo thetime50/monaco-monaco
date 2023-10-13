@@ -8,8 +8,7 @@
     "baseUrl": ".",
     "paths": {
       "*": ["node_modules/*"],
-      "common-lib":["../common-lib"],
-      "common-lib/src/ElectronIpc":["../common-lib/src/ElectronIpc"]
+      "common-lib/*":["../common-lib/*"]
     }
   },
   "include": [

@@ -1,6 +1,5 @@
 import { BrowserWindow, IpcMainEvent } from 'electron'
 import path from 'path'
-import {aa} from "common-lib"
 import { IPC_CMD } from "common-lib/src/ElectronIpc"
 import type { IpcCmdMsg } from "common-lib/src/ElectronIpc"
 
