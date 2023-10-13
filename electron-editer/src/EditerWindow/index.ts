@@ -18,6 +18,9 @@ class EditerWindow{
       }
     })
 
+    // const WinURL = isDev
+    //   ? `http://localhost:3000`
+    //   : 'file://' + join(__dirname, '../../dist/render/index.html')
     // win.loadFile('index.html')
     this.win.loadURL("http://localhost:5173/editer?" + __dirname)
     this.win.webContents.openDevTools()
