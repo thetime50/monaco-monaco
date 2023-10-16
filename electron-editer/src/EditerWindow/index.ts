@@ -3,6 +3,8 @@ import path from 'path'
 import { IPC_CMD } from "common-lib/src/ElectronIpc"
 import type { IpcCmdMsg } from "common-lib/src/ElectronIpc"
 
+import { enable as electronEnable } from '@electron/remote/main'
+
 class EditerWindow{
   constructor(){
     this.onIpcCmd = this.onIpcCmd.bind(this)
@@ -17,6 +19,7 @@ class EditerWindow{
         preload: path.join(__dirname, 'preload/index.js')
       }
     })
+    electronEnable(this.win.webContents)
 
     // const WinURL = isDev
     //   ? `http://localhost:3000`

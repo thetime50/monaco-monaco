@@ -10,7 +10,6 @@ import router from './router'
 import { Input } from 'ant-design-vue';
 import 'ant-design-vue/dist/reset.css'; 
 
-import { getCurrentWindow } from '@electron/remote'
 const app = createApp(App)
 
 app.use(createPinia())
@@ -19,13 +18,14 @@ app.use(Input);
 
 app.mount('#app')
 
-window.addEventListener("keypress", (e)=>{
-  const win = getCurrentWindow()
+window.addEventListener("keyup", (e)=>{
+  console.log(e.key)
   if(e.key =="F12"){
-    if (win.webContents.isDevToolsOpened()) {
-      win.webContents.closeDevTools()
+    console.log(window.webContents.isDevToolsOpened())
+    if (window.webContents.isDevToolsOpened()) {
+      window.webContents.closeDevTools()
     }else{
-      win.webContents.openDevTools()
+      window.webContents.openDevTools()
     }
   }
 })

@@ -8,6 +8,11 @@ declare global {
         openDevTools: () => void,
       }
     };
+    webContents:{
+      isDevToolsOpened:()=>boolean,
+      closeDevTools:()=>void,
+      openDevTools:()=>void,
+    }
   }
 }
 export let window: Window
