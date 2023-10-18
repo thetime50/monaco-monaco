@@ -85,7 +85,7 @@ export enum MonacoLanguage {
   Editor = 'editor',
 }
 export function getSuffix(name:string):string{
-  if (/.(\w*)$/.test(name)){
+  if (/\.(\w*)$/.test(name)){
     const lastDot = name.lastIndexOf(".")
     return name.substring(lastDot+1)
   }

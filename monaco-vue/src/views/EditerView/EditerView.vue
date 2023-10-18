@@ -39,7 +39,7 @@ import MonacoEditor,{ loader }  from '@guolao/vue-monaco-editor'
 
 EventBus.on(EventBusType.OPEN_FILE,(e:{name:string,content?:string})=> {
   if(e.content!== undefined){
-    fileName.value =  getLanguageType(e.name,true)
+    fileName.value =  e.name
     console.log(fileName.value)
     code.value = e.content || ''
   }
