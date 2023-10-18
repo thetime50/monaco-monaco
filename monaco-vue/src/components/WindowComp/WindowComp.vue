@@ -1,16 +1,17 @@
 <template>
-  <div class="window-view flex-layout flex-col">
-    <header class="flex-layout flex-row">
+  <div class="window-view flex flex-col">
+    <header class="flex flex-row">
       <div class="logo flex-0">OO</div>
-      <ul class="menu-list flex-0 flex-layout flex-row">
-        <li class="menu-item" v-for="menu in menus" :key="menu.id">
-          {{menu.test}}
-        </li>
+      <ul class="menu-list flex-0 flex flex-row">
+        <template v-for="menu in menus" :key="menu.id">
+          <MenuItemCom :menu="menu" />
+        </template>
       </ul>
       <div class="center flex-auto" @mousedown="onDragstart" @mouseup="onDragend">
         <!--  -->
+        <!-- <a-button>222</a-button> -->
       </div>
-      <div class="right flex-0 flex-layout flex-row">
+      <div class="right flex-0 flex flex-row">
         <button class="right-btn" @click="minimizeClick">-</button>
         <button class="right-btn" @click="maximizeClick">□</button>
         <button class="right-btn" @click="closeClick">×</button>
@@ -25,14 +26,25 @@
 <script setup lang="ts">
 import { ref,readonly,reactive,nextTick,onMounted } from 'vue';
 import {IpcCmd} from "@/lib/electronIpc/IpcCmd"
+import {Button as AButton}from "ant-design-vue"
+import type {MenuItem} from "./menu"
+import {getMenuList} from "./menu"
+import MenuItemCom from "./MenuItemCom.vue"
+import { openFile }from "@/lib/electronIpc/utils"
 
-const menus = readonly([
-  {id:"File",test:"File"},
-  {id:"Edit",test:"Edit"},
-  {id:"View",test:"View"},
-  {id:"Window",test:"Window"},
-  {id:"Help",test:"Help"},
-])
+const menus = readonly<MenuItem>(getMenuList({
+  actions:{
+    createFile:onCreateFile,
+    openFile:onOpenFile,
+  }
+}))
+
+function onCreateFile(){}
+async function onOpenFile(){
+  console.log("onOpenFile")
+  const fileRes = await openFile()
+  console.log("fileRes",fileRes)
+}
 
 function onDragstart(){
   IpcCmd.head.move_start()
