@@ -3,7 +3,7 @@
     <MonacoEditor
       v-model:value="code"
       :key="kk"
-      language="typescript"
+      :language="language"
       theme="vs-dark"
       :editorOptions="options"
       @mounted="onEditerMounted"
@@ -13,7 +13,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref,readonly,reactive,nextTick,onMounted } from 'vue';
+import { ref,readonly,reactive,nextTick,onMounted,computed } from 'vue';
 import {EventBus} from "@/lib/eventBus/eventBus"
 import {EventBusType} from "@/lib/eventBus/eventBusType"
 
@@ -25,13 +25,22 @@ import cssWorker from "monaco-editor/esm/vs/language/css/css.worker?worker"
 import htmlWorker from "monaco-editor/esm/vs/language/html/html.worker?worker"
 import tsWorker from "monaco-editor/esm/vs/language/typescript/ts.worker?worker"
 
+import { MonacoLanguage,getLanguageType } from './monacoEditorType';
+
+const fileName = ref<string>("a.ts")
+const language = computed<MonacoLanguage>(()=>{
+  const r = getLanguageType(fileName.value,true)
+  return r
+})
+
 // 语法提示
 
 import MonacoEditor,{ loader }  from '@guolao/vue-monaco-editor'
 
 EventBus.on(EventBusType.OPEN_FILE,(e:{name:string,content?:string})=> {
   if(e.content!== undefined){
-    e.name
+    fileName.value =  getLanguageType(e.name,true)
+    console.log(fileName.value)
     code.value = e.content || ''
   }
 })

@@ -108,7 +108,6 @@
               };
             },
           })
-     
           editor = monaco.editor.create(codeEditBox.value, {
             value: props.modelValue,
             language: props.language,

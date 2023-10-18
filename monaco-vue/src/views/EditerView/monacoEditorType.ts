@@ -74,3 +74,38 @@ export const editorProps = {
     },
   },
 }
+
+export enum MonacoLanguage {
+  Python = 'python',
+  JavaScript = 'javascript',
+  TypeScript = 'typescript',
+  Json = 'json',
+  Css = 'css',
+  Html = 'html',
+  Editor = 'editor',
+}
+export function getSuffix(name:string):string{
+  if (/.(\w*)$/.test(name)){
+    const lastDot = name.lastIndexOf(".")
+    return name.substring(lastDot+1)
+  }
+  return ""
+}
+
+export function getLanguageType(suffix:string,isName:boolean = false):MonacoLanguage{
+  let fsuffix = suffix
+  if (isName){
+    fsuffix = getSuffix(suffix)
+  }
+  const MonacoLanguageMap: Record<string, MonacoLanguage> = {
+    ts: MonacoLanguage.TypeScript,
+    tsx: MonacoLanguage.TypeScript,
+    js: MonacoLanguage.JavaScript,
+    jsx: MonacoLanguage.JavaScript,
+    py: MonacoLanguage.Python,
+    json: MonacoLanguage.Json,
+    css: MonacoLanguage.Css,
+    html: MonacoLanguage.Html,
+  }
+  return MonacoLanguageMap[fsuffix] || MonacoLanguage.Editor
+}

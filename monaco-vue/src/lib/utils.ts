@@ -1,5 +1,5 @@
 
-export function openFile(accept = ".text,.js,.ts,.jsx,.tsx,.py"):Promise < {
+export function openFile(accept = ".text,.js,.ts,.jsx,.tsx,.py" + ",.css,.html,.json"):Promise < {
   name: string,
   content?: string
 }>{
