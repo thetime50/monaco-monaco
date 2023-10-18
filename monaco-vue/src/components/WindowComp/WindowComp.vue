@@ -4,7 +4,7 @@
       <div class="logo flex-0">OO</div>
       <ul class="menu-list flex-0 flex flex-row">
         <template v-for="menu in menus" :key="menu.id">
-          <MenuItemCom :menu="menu" />
+          <MenuItemCom class="menu-item" :menu="menu" />
         </template>
       </ul>
       <div class="center flex-auto" @mousedown="onDragstart" @mouseup="onDragend">
@@ -30,7 +30,9 @@ import {Button as AButton}from "ant-design-vue"
 import type {MenuItem} from "./menu"
 import {getMenuList} from "./menu"
 import MenuItemCom from "./MenuItemCom.vue"
-import { openFile }from "@/lib/electronIpc/utils"
+import { openFile }from "@/lib/utils"
+import {EventBus} from "@/lib/eventBus/eventBus"
+import {EventBusType} from "@/lib/eventBus/eventBusType"
 
 const menus = readonly<MenuItem>(getMenuList({
   actions:{
@@ -39,10 +41,15 @@ const menus = readonly<MenuItem>(getMenuList({
   }
 }))
 
+// if(!EventBus.INS[EventBusType.OPEN_FILE]?.length){
+//   EventBus.add
+// }
+
 function onCreateFile(){}
 async function onOpenFile(){
   console.log("onOpenFile")
   const fileRes = await openFile()
+  EventBus.emit(EventBusType.OPEN_FILE, fileRes)
   console.log("fileRes",fileRes)
 }
 

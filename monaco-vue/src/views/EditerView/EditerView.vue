@@ -14,6 +14,8 @@
 
 <script setup lang="ts">
 import { ref,readonly,reactive,nextTick,onMounted } from 'vue';
+import {EventBus} from "@/lib/eventBus/eventBus"
+import {EventBusType} from "@/lib/eventBus/eventBusType"
 
 import * as monaco from "monaco-editor"
 // import 'monaco-editor/esm/vs/basic-languages/javascript/javascript.contribution'; // 语法高亮?
@@ -26,6 +28,13 @@ import tsWorker from "monaco-editor/esm/vs/language/typescript/ts.worker?worker"
 // 语法提示
 
 import MonacoEditor,{ loader }  from '@guolao/vue-monaco-editor'
+
+EventBus.on(EventBusType.OPEN_FILE,(e:{name:string,content?:string})=> {
+  if(e.content!== undefined){
+    e.name
+    code.value = e.content || ''
+  }
+})
 
 window.MonacoEnvironment = {
   // getWorkerUrl: function (moduleId, label) {
